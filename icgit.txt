@@ -1,0 +1,15 @@
+--important command for git bash--
+
+pwd-->present working directory ( full path of folders)s
+cd-->change directory (show the folder path only)
+git config --global user.name "name of the user"
+git config --global user.email "user mail id"
+git status(to check what is going on your git repo
+git init (make or initialize git repo of that current folder//of according to you also can customize)
+git add --a(add working directory in next step that are staging)
+git commit -m "initial commit"(snap all files /next stepping from staging to commit) here initial commit is message for commit the file
+git log is used to know by own what changes you have made
+rm -rf .git ( this command is used to delete all folders that were exist in your git repository)
+ls ( list all folder that are present in your directory)
+ctrl+shift+v (to paste any command line in git bash)
+touch .gitignore(to make such file that will no go in current repository)
