@@ -1,0 +1,45 @@
+.container{
+    border:2px solid;
+   border-style:groove;
+   border-color: coral;
+    height:300px;
+    border-radius:10px;
+    margin-top:200px;
+    width:500px;
+    overflow:hidden;
+
+
+}
+
+.a1{
+    text-align:center;
+    padding-top:10px;
+}
+.a3{
+    height:20px;
+    width:100px;
+    border:5px solid black;
+    margin-top:120px;
+    border-radius:10px;
+    text-align:center;
+    font-weight: bold;
+    cursor: pointer;
+   
+   
+}
+
+*{
+    margin:auto;
+    
+}
+.a3:hover{
+    background-color: green;
+}
+
+.a2{
+    text-align:center;
+    padding-top:50px;
+    height:50px;
+    
+   
+}
