@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fourth project</title>
+    <style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+
+}
+body{
+    
+   margin-top:100px;
+    background-color:aqua;
+    display:grid;
+    place-items:center;
+}
+form{
+ background-color:beige;
+ padding:80px;
+ width:50%;
+ margin:100px auto;
+ text-align:center;
+ box-shadow:0 10px 6px -4px green;
+
+
+}
+   #temp{
+  
+    height:20px;
+    width:100px;
+
+    
+   }
+   #temp_diff{
+        margin-top:20px;
+       
+
+    }
+    [type="submit"]{
+height:30px;
+margin:20px;
+width:100px;
+
+
+    }
+    #resultcontainer{
+        font-size:35px;
+    }
+
+
+    </style>
+</head>
+<body>
+    
+<form id="tempcal" onsubmit="calculatetemp(); return false">
+ 
+    <label for="temp">please enter the temperature you would like to convert</label>
+</br>
+    <input type="number" name="temp" id="temp">
+    <select name="temp_diff" id="temp_diff">
+   
+      <option value="cel">celsius</option>
+      <option value="feh">faherenite</option>
+    
+
+    </select></br>
+<input type="submit" name="temp"> </br>
+<span id="resultcontainer"></span>
+
+
+
+</form>
+        <!-- i can use directly [type="submit"] -->
+    <script>
+       
+
+   const calculatetemp=()=>{
+    const caltemp = document.getElementById('temp').value; // to get the value of selected number means that number
+    const tempselect = document.getElementById('temp_diff');
+    const valuetemp = temp_diff.options[tempselect.selectedIndex].value; //to get the value of selected index
+
+    let result;
+
+    const celtofah=(cel)=>{
+        let fahrenite = Math.round((cel*9/5)+32) // to get the integer value
+        return fahrenite;
+    }
+    const fahtocel=(fah)=>{
+        let celsius = Math.round((fah-32)*(5/9));
+        return celsius;
+    }
+    if(valuetemp=='cel'){
+        result = celtofah(caltemp);
+        document.getElementById('resultcontainer').innerHTML = `=${result}°fahernite`
+    }
+    else {
+        result = fahtocel(caltemp);
+        document.getElementById('resultcontainer').innerHTML=`${result}°celsius`
+    }
+   }
+    </script>
+</body>
+</html>
