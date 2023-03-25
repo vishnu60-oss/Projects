@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- <script src="https://kit.fontawesome.com/7d3da41e1e.js" crossorigin="anonymous"></script> -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+
+    <title>automatic increment counter</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+       .main-container{
+        display:flex;
+       justify-content:center;
+       margin:200px;
+       
+       
+       }
+       .container{
+        padding:40px;
+        text-align:center;
+        font-size:23px
+       }
+       body{
+        background-color:aquamarine;
+       }
+       .counter{
+        color:blueviolet;
+        font-size:xx-large
+       }
+       
+
+    </style>
+</head>
+<body>
+    <!-- data-target(not data target also for data-* at the star we can place anyitem ) is used to hold custom data for custom code( mainly for client js) -->
+    
+    <div class=main-container ><div class="container">
+        <i class="fa-solid fa-mug-hot fa-3x"></i>
+        <div class="counter" data-target="4000"></div> 
+        <span>project completed</span>
+    </div>
+    
+        
+    <div class="container">
+        <i class="fa-solid fa-users fa-3x"></i>
+        <div class="counter" data-target="18000"></div> 
+        <span>Our happy clients</span>
+    </div>
+
+    <div class="container">
+        <i class="fa-solid fa-tasks fa-3x"></i>
+        <div class="counter" data-target="8000"></div> 
+        <span>Ongoing projects</span>
+    </div>
+</div>
+
+    <script>
+  
+  const counters = document.querySelectorAll('.counter');
+  
+  counters.forEach((counter)=>{
+    //   console.log(counter);
+    counter.innerHTML=0;
+
+  const updatecounter=()=>{
+    const targetcount = +counter.getAttribute('data-target'); //getAttribute is used to get data-target like things
+  // counter .getAttribute gives the value in string to convert in into use plus sign before
+// var n = +str;
+const startingcount = Number(counter.innerHTML);
+const increment  = targetcount/100;
+
+if(startingcount<targetcount){
+    counter.innerHTML = `${Math.round(startingcount+increment)}`
+    setTimeout(updatecounter,10);
+}
+else {
+    counter.innerHTML = targetcount;
+}
+}
+
+
+
+    updatecounter();
+  })
+
+
+    </script>
+</body>
+</html>
