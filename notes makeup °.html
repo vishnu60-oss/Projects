@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <script src="https://kit.fontawesome.com/7d3da41e1e.js" crossorigin="anonymous"></script> -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+<link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8mN-6KdDCe6hppOj57HHMzyl404AP-uxiGQ&usqp=CAU" type="image/x-icon">
+    <title>clone notes</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            outline:none;
+        }
+body{
+    background-color:antiquewhite;
+    display:flex;
+    flex-wrap:wrap; 
+
+}
+.heading{
+    width:100vw;
+    height:5.5rem;
+    background-color:green;
+    color:beige;
+    box-shadow: 0px 10px 16px pink;}
+
+    .heading h1{
+        line-height:5.8rem;
+        margin-left:2rem;
+        font-weight:400;
+    }
+    .add:active{
+        transform:scale(0.98);
+
+    }
+    /* button style  */
+    .btn-div{
+        position:fixed;
+        top:7rem;
+        right:1rem;
+        border:none;
+        border-radius:3px;
+        padding:0.5rem 1rem;
+        cursor:pointer;
+        }
+        button{
+            position:relative;
+            display:inline-block;
+            cursor:pointer;
+            outline:none;
+            border:0;
+            vertical-align:middle;
+            text-decoration:none;
+            background:transparent;
+            padding:0;
+            border:5px solid transparent;
+            border-radius:5px;
+            
+        }
+
+        button.learn-more{
+            width:12rem;
+            height:auto;
+        }
+           button.learn-more .circle{
+                transition:all 0.45s cubic-bezier(0.65,0,0.076,1);
+                position:relative;
+                display:block;
+                margin:0;
+                width:3rem;
+                background:blue;
+                border-radius:1.625rem;
+           }
+ button.learn-more .circle .icon{
+    transition:all 0.45s cubic-bezier(0.65,0,0.076,1);
+   position:absolute;
+   top:0;
+   bottom:0;
+   margin:auto;
+   background:yellow;
+ }
+    button.learn-more .circle .icon.arrow{
+        transition:all 0.45s cubic-bezier(0.65,0,0.076,1);
+        left:0.625rem;
+        width:1.125rem;
+        background:none;
+    }
+    button.learn-more .circle .icon.arrow::before{
+        position:absolute;
+        content: "";
+        top:-0.25rem;
+        right:0.0625rem;
+        width:0.625rem;
+        height:0.625rem;
+        border-top:0.125rem solid burlywood;
+        border-right: 0.125rem solid burlywood;
+        transform:rotate(45deg);
+    }
+    
+     
+    button:hover .circle .icon.arrow{
+       
+        transform:translate(1rem,0);
+        
+    }
+    /* button style */
+    .note{
+        background-color:white;
+        margin:30px 20px;
+        height:200px;
+        width:400px;
+        overflow-y:scroll;
+        margin-top:7rem;
+        box-shadow:inset 1px  1px 0 rgba(0,0,0,0.1);
+        inset:0  -1px  0  rgba(0,0,0,0.1);
+    }
+    .note .tools{
+        display:flex;
+        justify-content:flex-end;
+         padding:0.5rem;
+    }
+    .note .tools button{
+        background-color:transparent;
+        border:none;
+        color:pink;
+        cursor:pointer;
+        font-size:1rem;
+        margin-left:0.5rem;
+
+    }
+    .note textarea{
+        outline:none;
+        font-size:1.2rem;
+        border:none;
+        height:300px;
+        width:100%;;
+        padding:20px;
+
+    }
+
+    .fa-edit, .fa-trash-alt{
+        color:beige;
+        padding:10px;
+        background-color:skyblue;
+        border-radius:50%;
+    }
+    .fa-trash-alt{
+        background-color:orange;
+
+    }
+    .fa-edit:hover{
+        background-color:azure;
+        color:skyblue;
+        filter:drop-shadow(0px 10px 8px green);
+
+    }
+    .fa-trash-alt:hover{
+        background-color:aquamarine;
+        color:orange;
+        filter:drop-shadow(0px 10px 8px green);
+    }
+    .main{
+        padding:20px;
+
+    }
+    .hidden{
+        display:none;
+    }
+    .button-text{
+        border:2px solid orangered;
+        border-radius:50px;
+    }
+    .button-text:hover{
+        background-color:green;
+    }
+    </style>
+</head>
+<body>
+    <div class="heading">
+        <h1> <i class="fa-regular fa-note-sticky"></i>Keep 
+        Notes Ready</h1>
+    </div>
+    <div class="btn-div">
+        <button class="learn-more" class="add" id="add">
+           <span class="circle" aria-hidden="true">
+            <span class="icon arrow"></span>
+           </span>
+           <span class="button-text">Add note</span>
+
+
+        </button>
+    </div>
+    <!-- <div class="note">
+        <div class="operation">
+            <button class="edit"><i class="fas fa-edit"></i></button>
+            <button class="delete"><i class="fas fa-trash-alt"></i></button>
+        </div>
+        <div class="main"></div>
+        <textarea class=""></textarea>
+    </div> -->
+    <script>
+const addButton = document.querySelector('#add');
+const updateLsData = ()=>{
+    const textAreaData = document.querySelectorAll('textarea');// data is storing in the form of array
+    const notes = [];
+
+    textAreaData.forEach((note)=>{ // for each store the current value
+        return notes.push(note.value);
+
+        // to add in the local storage of this array
+        localStorage.setItem('notes',JSON.stringify('notes'));
+        // here by using json .strigigy we can get the string object in the form of json 
+
+    })
+} 
+const addNewNote = (text='')=>{
+const note = document.createElement('div');
+note.classList.add('note'); 
+const htmlData = 
+` <div class="operation"> 
+            <button class="edit"><i class="fas fa-edit"></i></button>
+            <button class="delete"><i class="fas fa-trash-alt"></i></button>
+        </div>
+        <div class="main ${text?"":"hidden"}"></div>
+        <textarea class="${text?"hidden":""}"></textarea>`  
+        note.insertAdjacentHTML('afterbegin',htmlData);
+        //getting the refrences of delete and edit content edit,textarea,delete
+        const editButton = note.querySelector('.edit');
+        const delButton = note.querySelector('.delete');
+        const mainDiv = note.querySelector('.main');
+        const textArea = note.querySelector('textarea');
+
+        // delete the note or created notes
+
+        delButton.addEventListener('click',()=>{
+            note.remove();
+            updateLsData();
+             // to remove the element;
+        })
+// toggle using edit button 
+textArea.value=text;
+mainDiv.innerHTML = text;
+      
+        editButton.addEventListener('click',()=>{  // toggle means on or off simply
+            mainDiv.classList.toggle('hidden'); // toggle karne per agar vo hide ho to hidden of main div
+            textArea.classList.toggle('hidden');  // agar textarea hai to toggle nahi to hidden
+        })
+
+        //edit using toggle 
+        textArea.addEventListener('change',(event)=>{
+            const value = event.target.value;
+            mainDiv.innerHTML = value;
+            updatLsData();
+        })
+
+        document.body.appendChild(note)  // it append(add) the nodd as the last child of node
+}
+//getting data back from local storage
+const notes = JSON.parse(localStorage.getItem('notes'));
+if(notes){
+    notes.forEach((note)=>
+        addNewNote(note))
+    
+}
+
+addButton.addEventListener('click',()=>
+    addNewNote()
+);
+
+    </script>
+</body>
+</html>
